@@ -8,7 +8,7 @@ public class PlayerTeam {
     public TextColor getTeamColor(Player player) {
         Team team = player.getScoreboard().getPlayerTeam(player);
 
-        if (team != null && team.color() != null) {
+        if (team != null) {
             return team.color();
         }
 

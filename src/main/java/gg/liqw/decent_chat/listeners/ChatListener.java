@@ -3,16 +3,12 @@ package gg.liqw.decent_chat.listeners;
 import io.papermc.paper.chat.ChatRenderer;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.audience.Audience;
-
 import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-
 import java.util.regex.Pattern;
-
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
-
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -22,11 +18,11 @@ import org.bukkit.plugin.Plugin;
 import gg.liqw.decent_chat.utils.PlayerTeam;
 
 public class ChatListener implements Listener, ChatRenderer {
-    private final FileConfiguration config;
+    private final Plugin plugin;
     private final MiniMessage miniMessage;
 
     public ChatListener(Plugin plugin) {
-        this.config = plugin.getConfig();
+        this.plugin = plugin;
         this.miniMessage = MiniMessage.miniMessage();
     }
 
@@ -37,7 +33,7 @@ public class ChatListener implements Listener, ChatRenderer {
 
     @Override
     public Component render(Player source, Component sourceDisplayName, Component message, Audience viewer) {
-        return MiniMessage.miniMessage().deserialize(config.getString("chat-format", "<player>: <message>"), Placeholder.component("player", processPlayer(source)), Placeholder.component("message", processMessage(source, message, viewer)));
+        return miniMessage.deserialize(plugin.getConfig().getString("chat-format", "<player>: <message>"), Placeholder.component("player", processPlayer(source)), Placeholder.component("message", processMessage(source, message, viewer)));
     }
 
     private Component processPlayer(Player source) {
@@ -47,6 +43,7 @@ public class ChatListener implements Listener, ChatRenderer {
     }
 
     private Component processMessage(Player source, Component message, Audience viewer) {
+        FileConfiguration config = plugin.getConfig();
         Component processedMessage = message;
 
         if (config.getBoolean("mentions", true) && viewer instanceof Player mentioned) {
@@ -61,10 +58,12 @@ public class ChatListener implements Listener, ChatRenderer {
 
         ConfigurationSection emojis = config.getConfigurationSection("emojis");
         if (emojis != null) {
-            for (String pattern : emojis.getKeys(false)) {
-                String replacement = emojis.getString(pattern);
+            for (String emoji : emojis.getKeys(false)) {
+                Pattern pattern = Pattern.compile(Pattern.quote(emoji), Pattern.CASE_INSENSITIVE);
+                String replacement = emojis.getString(emoji);
+
                 if (replacement != null) {
-                    processedMessage = processedMessage.replaceText(builder -> builder.matchLiteral(pattern).replacement(MiniMessage.miniMessage().deserialize(replacement)));
+                    processedMessage = processedMessage.replaceText(builder -> builder.match(pattern).replacement(MiniMessage.miniMessage().deserialize(replacement)));
                 }
             }
         }

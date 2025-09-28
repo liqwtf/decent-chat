@@ -1,4 +1,12 @@
 name: decent-chat
-version: '1.1'
+version: "1.2.1"
 main: gg.liqw.decent_chat.DecentChat
-api-version: '1.21'
+api-version: "1.21"
+commands:
+  reload:
+    description: "Reload the Configuration File"
+    permission: decent-chat.reload
+permissions:
+  decent-client.reload:
+    description: "Use the reload command"
+    default: op
