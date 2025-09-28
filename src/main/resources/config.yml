@@ -1,0 +1,20 @@
+chat-format: "<player>: <message>"
+mentions: true
+
+messages:
+  join: "<player> <yellow>joined the game"
+  quit: "<player> <yellow>left the game"
+  sleep: "<player> <yellow>went to sleep"
+
+# remove this section to disable emojis
+emojis:
+  "<3": "<red>❤</red>"
+  ":yes:": "<green>✔</green>"
+  ":no:": "<red>✖</red>"
+  ":shrug:": "<yellow>¯\_(ツ)_/¯</yellow>"
+  ":tableflip:": "<red>(╯°□°）╯<gray>︵ ┻━┻</gray></red>"
+  "o/": "<pink>( ﾟ◡ﾟ)/</pink>"
+  ":snail:": "<yellow>@<green>'</green>-<green>'</green></yellow>"
+  ":gimme:": "<aqua>༼つ◕_◕༽つ</aqua>"
+  "h/": "<yellow>ヽ(^◇^*)/</yellow>"
+  ":cute:": "<yellow>(<green>✿</green>◠‿◠)</yellow>"
