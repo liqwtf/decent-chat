@@ -1,4 +1,4 @@
 name: decent-chat
-version: '1.0'
+version: '1.1'
 main: gg.liqw.decent_chat.DecentChat
 api-version: '1.21'
