@@ -1,0 +1,36 @@
+chat-message:
+  format: "<player>: <message>"
+  mentions: true
+  whisper:
+    to: "<dark_aqua>To <player><gray>: <message>"
+    from: "<dark_aqua>From <player><gray>: <message>"
+
+system-messages:
+  join: "<player> <yellow>joined the game"
+  quit: "<player> <yellow>left the game"
+  sleep: "<player> <yellow>went to sleep"
+  world-change:
+    world: "<player> <yellow>has entered <green>Overworld</green>"
+    world_nether: "<player> <yellow>has entered <red>The Nether</red>"
+    world_the_end: "<player> <yellow>has entered <dark_purple>The End</dark_purple>"
+    # add more worlds by setting the key to the world name
+  advancement:
+    task: "<player> <yellow>has made the advancement <advancement>"
+    challenge: "<player> <yellow>has completed the challenge <advancement>"
+    goal: "<player> <yellow>has reached the goal <advancement>"
+  # replace with null to disable
+
+nick-identifier: 
+  chat: "<gray>*</gray><nickname>"
+  tab: "<nickname> <gray>(<player>)</gray>"
+
+emojis:
+  "<3": "<red>❤"
+  ":yes:": "<green>✔"
+  ":no:": "<red>✖"
+  ":skull:": "<white>☠"
+  ":shrug:": "<yellow>¯\\_(ツ)_/¯"
+  ":cute:": "<yellow>(<green>✿<yellow>◠‿◠)"
+  ":lol:": "<red><bold>LOL"
+  ":oof:": "<red><bold>OOF"
+  ":ugh:": "<yellow>¬_¬"

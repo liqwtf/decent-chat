@@ -1,0 +1,4 @@
+name: decent-chat
+version: '1.3.0'
+main: me.liqw.decent_chat.DecentChat
+api-version: '1.21'
